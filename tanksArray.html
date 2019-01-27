@@ -91,6 +91,7 @@ function render() {
 } render();//--------------render-------------------------------
 
 var tankX = midX; var tankY = midY+2*size;
+
 function drawTank() {
     tank00 = tanks[a]; 
     // 戦車の絵を8枚ループさせてアニメを作る
@@ -113,8 +114,8 @@ var bulletY = tankY-size/2
 var bulleCount = 0;
 
 function drawBullet(){
-    let x = tankX+16;
-    c.drawImage(bullet,x,bulletY);
+    let x = tankX+16; let y = bulletY;
+    c.drawImage(bullet,x,y);
     if (bulletY > midY-192)
         bulletY -=10;
     if (bulletY < midY-size*3+5){
@@ -159,6 +160,7 @@ function drawGuide() {
 }
 
 function KeyDownHandler(e) {
+    e.preventDefault();
     if(e.keyCode == 39||e.keyCode == 68) 
         right = true;
     else if(e.keyCode == 37||e.keyCode == 65) 
