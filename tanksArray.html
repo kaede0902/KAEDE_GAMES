@@ -27,7 +27,6 @@ const px = 32; const size = 64;
 const tanks = 
     new Array(8).fill().map(() => 
         new Image());
-
 tanks.map((img, index) => 
     img.src = `./tankParts/tank0${index + 1}.png`);
 
@@ -86,7 +85,8 @@ function render() {
     destroyed();
     stageLine();
     drawGuide();
-    drawBullet();
+    if (shot)
+        drawBullet();
 
 } render();//--------------render-------------------------------
 
@@ -153,20 +153,22 @@ function drawGuide() {
 }
 
 function KeyDownHandler(e) {
-    if(e.keyCode == 39||e.keyCode == 68) { 
+    if(e.keyCode == 39||e.keyCode == 68) 
         right = true;
-    } else if(e.keyCode == 37||e.keyCode == 65) {
+    else if(e.keyCode == 37||e.keyCode == 65) 
         left = true;
-    }
+    if (e.keyCode == 13)
+        shot = true;
 }
-function KeyUpHandler(e) {
-    if (e.keyCode == 39||e.keyCode == 68) {
+function KeyUpHandler(e) { // e をlogで出せば入力がわかる？
+    if (e.keyCode == 39||e.keyCode == 68) 
         right = false;
-    } else if (e.keyCode == 37||e.keyCode == 65) {
+    else if (e.keyCode == 37||e.keyCode == 65)
         left = false;
-    }
+    if (e.keyCode == 13)
+        shot = false;
 }
-// add space key to trigger fire()
+// add space key to trigger fire(), 13
 
 setInterval(render,100);
 
