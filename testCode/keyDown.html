@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>keydown</title>
+</head>
+<body>
+    <script>
+    var right = false; var left = false; var shot = false;
+
+    document.addEventListener("keydown", KeyDownHandler, false);
+
+    function KeyDownHandler(e) {
+    // e.preventDefault();
+    if(e.keyCode == 39||e.keyCode == 68) 
+        right = true;
+    else if(e.keyCode == 37||e.keyCode == 65) 
+        left = true;
+    if (e.keyCode == 13)
+        shot = true;
+    }
+    
+    function render() {
+        console.log(e.keyCode);
+    } 
+
+    setInterval(render, 100);
+
+    </script>
+</body>
+</html>
