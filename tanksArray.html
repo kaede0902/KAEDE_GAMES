@@ -90,7 +90,7 @@ function render() {
 
 } render();//--------------render-------------------------------
 
-var tankX = midX;var tankY = midY+2*size;
+var tankX = midX; var tankY = midY+2*size;
 function drawTank() {
     tank00 = tanks[a]; 
     // 戦車の絵を8枚ループさせてアニメを作る
@@ -110,12 +110,18 @@ function destroyed() {
     b++; b = b % 3; // 0~2
 }
 var bulletY = tankY-size/2
+var bulleCount = 0;
 
 function drawBullet(){
-    c.drawImage(bullet,tankX+16,bulletY);
+    let x = tankX+16;
+    c.drawImage(bullet,x,bulletY);
     if (bulletY > midY-192)
         bulletY -=10;
-    // console.log(bulletY);
+    if (bulletY < midY-size*3+5){
+        shot = false;
+        bulletY = midY+size*2;
+    }
+    bulleCount++;
 }
 
 function stageLine() {
@@ -165,8 +171,8 @@ function KeyUpHandler(e) { // e をlogで出せば入力がわかる？
         right = false;
     else if (e.keyCode == 37||e.keyCode == 65)
         left = false;
-    if (e.keyCode == 13)
-        shot = false;
+    // if (e.keyCode == 13)
+    //     shot = false;
 }
 // add space key to trigger fire(), 13
 
