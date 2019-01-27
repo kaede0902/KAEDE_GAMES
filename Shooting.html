@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shooting Game</title>
+    <style>* { padding: 0; margin: 0; }
+        canvas { background: #000; }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        // Press right or d key, Triangle moves right
+        // Press left  or a key, left.
+        
+        const canvas = document.querySelector('canvas');
+        const endX = canvas.width = window.innerWidth;
+        const endY = canvas.height = window.innerHeight;
+        const c = canvas.getContext('2d');
+        const midX = endX/2;
+        const midY = endY/2;
+        c.lineWidth = 5;
+        
+        // Players Starting point
+        var pX = midX; var pY = endY - 60;
+        var right = false; var left = false;
+        
+        // Bullets starting point
+        var bX = pX; var bY = pY;
+        
+        // Players width and height
+        var pW = 40; var pH = 120;
+        // Bullets width
+        var bW = 10; var eBW = endY*0.04;
+
+        // Enemy's Starting point
+        var eX = endX/2.5; var eY = endY/3;
+        const eW = 60; const eH = 120;
+        // Enemy's bullet's starting point
+        var eBX = eX; var eBY = eY;
+        var eBX2 = eX-2; var eBX3 = eX+2;
+        
+        // Enemy Direction
+        var drc = 1; //right dir
+        
+        // Speeds
+        var pSpd = 12; var eSpd = 10;
+        var bSpd = 48; var eBSpd = 12;
+        
+        const maxEHP = 200; const maxPHP = 50;
+        var eHP = maxEHP; var pHP = maxPHP;
+        var EHPPer;
+        var PHPPer;
+
+        var point = 0; var gameEnd = false;
+        
+        function drawCircle(x, y, r, color) {
+            c.beginPath();
+            c.arc(x, y, r, 0, 2*Math.PI, false);
+            c.fillStyle = color;
+            c.fill();
+        }
+
+        function drawPlayer() {
+            c.beginPath();
+            c.strokeStyle = '#fff';
+            c.moveTo(pX, pY);
+            c.lineTo(pX + pW,pY + pH);
+            c.lineTo(pX - pW,pY + pH);
+            c.lineTo(pX,pY);
+            c.stroke();
+            c.fillStyle = '#0095DD';
+            c.fill();
+            c.closePath();
+            if (right&& pX+pSpd < endX)
+                pX += pSpd;
+            else if (left && pSpd<pX)
+                pX -= pSpd;
+        }
+
+        function drawBul() {
+            c.beginPath();
+            c.lineWidth = 5;
+            c.fillStyle = '#bbb';
+            c.arc(bX,bY,bW,0,10,false);
+            c.stroke();
+            c.fill();
+            c.closePath();
+
+            if(bY < 0) {
+                bX = pX;bY = pY;
+            } else {
+                bY -= bSpd;
+            } 
+        }
+        function drawEne() {
+            c.beginPath();
+            c.strokeStyle = '#000';
+            c.moveTo(eX, eY);
+            c.lineTo(eX - eW,eY - eH);
+            c.lineTo(eX + eW,eY - eH);
+            c.lineTo(eX,eY);
+            c.stroke();
+            c.fillStyle = '#d00';
+            c.fill();
+            c.closePath();
+            eX += eSpd * drc;
+            if (endX < eX) 
+                drc *= -1;
+            if (eX < 0)
+                drc *= -1;
+        }
+        function drawEneBul() {
+            drawCircle(eBX,eBY,eBW,'#f00');
+            drawCircle(eBX2,eBY,eBW,'#f00');
+            drawCircle(eBX3,eBY,eBW,'#f00');
+            
+            if(eBY > endY) {
+                eBX = eX;eBY = eY;
+                eBX2 = eX-2; eBX3 = eX+2;
+            } else {
+                eBX2 += eBSpd*1.1;
+                eBX3 -= eBSpd*1.1;
+                eBY += eBSpd;
+            } 
+            
+        }
+
+        function draw() {
+            c.clearRect(0,0,endX,endY);
+            drawHPBar();
+            drawPlayer();
+            drawBul();
+            drawEne();
+            drawEneBul();
+            drawMessage();
+            hit();
+            decision();
+            
+            console.log("1 " + PHPPer);            
+            console.log('2: ' + maxEHP);
+
+            requestAnimationFrame(draw);
+        } draw();
+
+        document.addEventListener("keydown", KeyDownHandler, false);
+        document.addEventListener("keyup", KeyUpHandler, false);
+
+        function KeyDownHandler(e) {
+            // right key or D key
+            // left key or A key
+            if(e.keyCode == 39||e.keyCode == 68) { 
+                right = true;
+            } else if(e.keyCode == 37||e.keyCode == 65) {
+                left = true;
+            }
+        }
+        function KeyUpHandler(e) {
+            if (e.keyCode == 39||e.keyCode == 68) {
+                right = false;
+            } else if (e.keyCode == 37||e.keyCode == 65) {
+                left = false;
+            }
+        }
+        function drawMessage() {
+        c.beginPath();
+        c.fillStyle = '#fff';
+        c.textAlign = "center";
+        c.font = endX * 0.05 +'px serif';
+        c.fillText('Press D(<-) or A(->) key',midX,endY*.1);
+        
+        }
+        function drawHPBar() {
+            PHPPer = pHP/maxPHP*100;
+            EHPPer = eHP/maxEHP*100;
+            c.beginPath();
+            c.lineWidth = 1.5;
+            c.strokeStyle = '#fff';
+            c.fillStyle = '#f55'
+            c.fillRect(eX,eY*1.01,eW/100*EHPPer,eW/4);
+            c.strokeRect(eX,eY*1.01,eW,eW/4);
+            
+
+            c.fillStyle = '#04f';
+            c.fillRect(pX*1.02,pY*1.01,pW/100*PHPPer,pW/4);
+            c.strokeRect(pX*1.02,pY*1.01,pW,pW/4);
+            c.fill(); c.stroke();
+            c.closePath();
+        }
+        function decision() {
+            c.font = endX * 0.05 +'px serif';
+            if (eHP < 0) {
+                c.fillStyle = 'lightblue';
+                c.fillText("CLEAR!",midX,midY,600);
+                c.fillText("Please reload browser.",midX,midY*1.5,600);
+                c.fillStyle = '#04f'
+                c.fillText("Score: "+ (PHPPer),midX,midY*1.3,600);
+                gameEnd = true;
+            } else if (pHP < 0) {
+                c.fillStyle = '#f22';
+                c.fillText("YOU DEAD!",midX,midY,600);
+                c.fillText("Please reload browser",midX,midY*1.5,600);
+                gameEnd = true;
+            }
+            if (gameEnd) {
+                eSpd = 0; pSpd = 0; 
+            }
+        }
+
+        function hit() {
+            if (!gameEnd) {
+                // player's bul with Enemy
+                if (eX - eW < bX + bW && bX - bW < eX+eW && 
+                    bY - bW < eY && bY + bW < eY - eH) 
+                    eHP -= 2;
+
+                // enemy's bul with Player
+                if (pX-pW < eBX+eBW && eBX-eBW < pX + pW&&
+                    pY < eBY+eBW && eBY-eBW < pY+pH)
+                    pHP -= 1/2;
+                if (pX-pW < eBX2+eBW&& eBX2-eBW < pX + pW&&
+                    pY < eBY+eBW && eBY-eBW < pY+pH)
+                    pHP -= 1/2;
+                if (pX-pW < eBX3+eBW&& eBX3-eBW < pX + pW&&
+                    pY < eBY+eBW && eBY-eBW < pY+pH)
+                    pHP -= 1/2;
+            }
+        }
+        
+    </script>
+</body>
+</html>
