@@ -76,9 +76,9 @@ function drawTank() {
     // 戦車の絵を8枚ループさせてアニメを作る
     c.drawImage(tank00,tankX,tankY,size,size);
     a++; a = a % 8; // 0~7
-    if (right&& tankX < midX+2*size)
+    if (right&& tankX < midX-size+ AreaSize/2 *size)
         tankX += 5;
-    else if (left && midX-3*size <tankX)
+    else if (left && midX-AreaSize/2*size <tankX)
         tankX -= 5; 
 }
 // Tank --------------------------------------------------------
@@ -120,7 +120,7 @@ function drawGuide() {
         midX,Bottom+size);
     
     c.fillStyle = '#fff';
-    c.fillText('Space to shoot',midX,Bottom+size/2);
+    c.fillText('Enter to shoot',midX,Bottom+size/2);
     c.fillText('<- A key',LeftX,Top-10);
     c.fillText('D key ->',RightX,Top-10);
     c.closePath();
