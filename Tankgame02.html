@@ -53,12 +53,15 @@ tanks[0].onload = function() {
     flag = true;
 };       
 
-var AreaSize = 10; const size = 64;// Area 6 * 6 tiles. 64px. -3*64 = -192 
+var AreaSize = 8; const size = 64;// Area 6 * 6 tiles. 64px. -3*64 = -192 
 var LeftX = midX -AreaSize/2 * size; var RightX = midX + AreaSize/2 * size;
 var Top = midY - AreaSize/2 * size; var Bottom = midY + AreaSize/2 * size;
 
 var tankX = midX; var tankY = midY -size + (AreaSize/2) * size;
 var a = 0;
+
+var bulletY = tankY-size/2
+var bulleCount = 0;
 
 // --------------render---------------------------------------- 
 function render() {
@@ -82,6 +85,27 @@ function drawTank() {
         tankX -= 5; 
 }
 // Tank --------------------------------------------------------
+// Bul --------------------------------------------------------
+// function drawBullet(){
+//     let x = tankX+16; let y = bulletY;
+//     c.drawImage(bullet,x,y);
+//     if (bulletY > midY-192)
+//         bulletY -=10;
+//     if (bulletY < midY-size*3+5){
+//         shot = false;
+//         bulletY = midY+size*2;
+//     }
+//     bulleCount++;
+// }
+function shoot(x,y,spd) {
+    c.drawImage(bullet,x,y);
+    if (y < Top-10)
+        y -= spd;
+    shotCount++;
+    
+} 
+// Bul --------------------------------------------------------
+
 
 // -------------------- Make Area ------------------------------
 function MakeArea() {
@@ -135,7 +159,7 @@ function KeyDownHandler(e) {
     else if(e.keyCode == 37||e.keyCode == 65) 
         left = true;
     if (e.keyCode == 13)
-        shot = true;
+        shoot(tankX+size/4,tankY-size/2,10);
 }
 function KeyUpHandler(e) { // e をlogで出せば入力がわかる？
     if (e.keyCode == 39||e.keyCode == 68) 

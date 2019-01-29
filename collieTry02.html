@@ -1,0 +1,78 @@
+<html>
+<head></head>
+<body>    
+<script type="text/javascript" src="http://jindo.dev.naver.com/collie/deploy/collie.min.js"></script>
+<script type="text/javascript" src="http://jindo.dev.naver.com/collie/js/raphael-min.js"></script>
+<div id="container" class="container"></div>
+<script type="text/javascript">
+    var layer = new collie.Layer({
+        width : 300,
+        height : 300
+    });
+     
+    collie.ImageManager.add({
+        test : "http://jindo.dev.naver.com/collie/img/small/tree1.png"
+    });
+     
+    new collie.Polyline({
+        width : 110,
+        height : 110,
+        strokeWidth : 5,
+        lineJoin : "round",
+        dashArray : "-.",
+        fillImage : "test",
+        closePath : true
+    }).addTo(layer).setPointData([
+        [10, 10],
+        [100, 10],
+        [10, 100]
+    ]);
+     
+    new collie.Polyline({
+        x : 110,
+        width : 130,
+        height : 110,
+        strokeWidth : 5,
+        lineJoin : "round",
+        dashArray : "-.",
+        closePath : false
+    }).addTo(layer).setPointData([
+        [10, 10],
+        [100, 10],
+        [10, 100]
+    ]);
+     
+    new collie.Polyline({
+        y : 120,
+        width : 110,
+        height : 110,
+        strokeWidth : 5,
+        lineJoin : "round",
+        closePath : false
+    }).addTo(layer).setPointData([
+        [10, 10],
+        [100, 10],
+        [10, 100]
+    ]);
+     
+    new collie.Polyline({
+        x : 120,
+        y : 120,
+        width : 110,
+        height : 110,
+        strokeWidth : 5,
+        lineJoin : "miter",
+        closePath : false
+    }).addTo(layer).setPointData([
+        [10, 10],
+        [100, 10],
+        [10, 100]
+    ]);
+     
+    collie.Renderer.addLayer(layer);
+    collie.Renderer.load(document.getElementById("container"));
+    collie.Renderer.start();
+</script>
+</body>
+</html>
+            
