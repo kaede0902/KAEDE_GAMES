@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>hello</title>
+</head>
+<body>    
+<script type="text/javascript" src="http://jindo.dev.naver.com/collie/deploy/collie.min.js"></script>
+<div id="container" class="container"></div>
+<script type="text/javascript">
+    var layer = new collie.Layer({
+        width : window.innerWidth,
+        height : window.innerHeight,
+    });
+     
+    var box = new collie.DisplayObject({
+        width : window.innerWidth,
+        height : window.innerHeight,
+        x : 10,
+        y : 10,
+        backgroundColor : 'red'
+    }).addTo(layer);
+     
+    collie.Renderer.addLayer(layer);
+    collie.Renderer.load(document.getElementById("container"));
+    collie.Renderer.start();
+</script>
+</body>
+</html>

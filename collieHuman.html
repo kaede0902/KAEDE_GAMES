@@ -1,0 +1,62 @@
+<html>
+<head></head>
+<body>    
+<script type="text/javascript" src="http://jindo.dev.naver.com/collie/deploy/collie.min.js"></script>
+<div id="container" class="container"></div>
+<script type="text/javascript">
+    var layer = new collie.Layer({
+        width : 300,
+        height : 300
+    });
+ 
+    collie.ImageManager.add({
+        human : "http://jindo.dev.naver.com/collie/demo/touchskeleton/img/small/human_walk.png"
+    });
+     
+    collie.ImageManager.addSprite("human", {
+        top : [0, 0, 64, 64, 9], // x, y, width, height, spriteLength
+        left : [0, 64 * 1, 64, 64, 9],
+        bottom : [0, 64 * 2, 64, 64, 9],
+        right : [0, 64 * 3, 64, 64, 9]
+    });
+     
+    var human = new collie.DisplayObject({
+        x : "center",
+        y : "center",
+        width : 64,
+        height : 64,
+        spriteSheet : "bottom",
+        backgroundImage : "human"
+    }).addTo(layer);
+     
+    collie.Timer.cycle(human, "12fps", {
+        to : 8,
+        onEnd : function () {
+            var direction = "";
+             
+            switch (human.get("spriteSheet")) {
+                case "left" :
+                    direction = "bottom";
+                    break;
+                case "bottom" :
+                    direction = "right";
+                    break;
+                case "right" :
+                    direction = "top";
+                    break;
+                case "top" :
+                    direction = "left";
+                    break;
+            }
+             
+            human.set("spriteSheet", direction);
+        }
+    });
+             
+    collie.Renderer.addLayer(layer);
+    collie.Renderer.load(document.getElementById("container"));
+    collie.Renderer.start();
+</script>
+</body>
+</html>
+            

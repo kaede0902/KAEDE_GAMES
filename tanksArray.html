@@ -63,6 +63,7 @@ const bombs = [
 ];
 document.addEventListener("keydown", KeyDownHandler, false);
 document.addEventListener("keyup", KeyUpHandler, false);
+
 var right = false; var left = false; var shot = false;
 
 
@@ -100,10 +101,7 @@ function drawTank() {
     if (right&& tankX < midX+2*size)
         tankX += 5;
     else if (left && midX-3*size <tankX)
-        tankX -= 5;
-    // console.log('tankX,Y:',tankX,tankY);
-    // console.log('L,R:',left,right);
-    
+        tankX -= 5; 
 }
 function destroyed() {
     bomb00 = bombs[b]; // bombの絵は3枚。

@@ -11,7 +11,7 @@
 </head>
 <body>
 <canvas></canvas>
-<script>
+<script> // Change: size,AreaSize,floor,
 
 //　いつものCanvasセット
 const cvs = document.querySelector('canvas');
@@ -22,9 +22,7 @@ const midX = cvs.width /2;
 const midY = cvs.height /2;
 c.fillStyle = c.strokeStyle = '#fff';
 
-// pxは1タイル32pxでsizeは64pxで描画する。
-const px = 32; 
-
+// sizeは64pxで描画する。
 
 const floor = new Image();
 floor.src = './tankParts/floor.png';
@@ -34,12 +32,16 @@ floor.onload = function() {
     flag = true;
 };  
 
+<<<<<<< HEAD
 var AreaSize = 4; const size = 64;
+=======
+var AreaSize = 8; const size = 64;
+>>>>>>> 4318c243345373fffaf6c4d8d8aa0cb11b4e32c1
 // Area 6 * 6 tiles. 64px. -3*64 = -192 
 var LeftX = midX -AreaSize/2 * size; var RightX = midX + AreaSize/2 * size;
 var Top = midY - AreaSize/2 * size; var Bottom = midY + AreaSize/2 * size;
 
-// --------------render---------------------
+// --------------render---------------------------------------- 
 function render() {
     
     c.clearRect(0,0,endX,endY);
@@ -78,14 +80,17 @@ function drawFloor() {
 
 function drawGuide() {
     c.beginPath();
-    c.font='32px serif';
+    c.fillStyle = '#aaa';
+    c.font= size/2 +'px serif';
     c.textAlign = "center";
-    c.fillText('<- A key',LeftX,Top-10);
-    c.fillText('D key ->',RightX,Top-10);
-    c.fillText('Space to shoot',midX,Bottom+size/2);
     c.fillText('Size: '+size
         +'px: '+ AreaSize+ ' x '+ AreaSize,
         midX,Bottom+size);
+    
+    c.fillStyle = '#fff';
+    c.fillText('Space to shoot',midX,Bottom+size/2);
+    c.fillText('<- A key',LeftX,Top-10);
+    c.fillText('D key ->',RightX,Top-10);
     c.closePath();
 }
 // Make Area----------------------------------------------
