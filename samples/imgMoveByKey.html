@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slime move</title>
+    <style>
+        canvas { background: #777;
+                background-image: url('../imgs/dirt.png');
+                background-size:150px;
+                width: 100%; height: 100%;}
+        body {margin: 0;}
+    </style>
+
+</head>
+<body>
+    <canvas></canvas>
+<script>
+    // only right and left, with keybind.
+
+    var canvas = document.querySelector('canvas');
+    var endX = canvas.width = window.innerWidth;
+    var endY = canvas.height = window.innerHeight;
+    var c = canvas.getContext('2d');
+    var midX = endX/2;
+    var midY = endY/2;
+
+    document.addEventListener("keydown", KeyDownHandler, false);
+    document.addEventListener("keyup", KeyUpHandler, false);
+    
+    var slimeX = 100; var slimeY = 300;
+    var slimeW = 50;  var slimeH = slimeW;
+    var slimeSpd = 7;
+    var right = false; var left = false;
+
+    var img = new Image();
+    img.src = "../imgs/slime_T.png";
+
+    var flag = false;
+
+    img.onload = function () {
+        flag = true;
+    }
+    
+    function gridLine() {
+        c.lineWidth = 1;
+        function strokeGrid() {
+            c.beginPath();
+            c.moveTo(i*50, 0);
+            c.lineTo(i*50, endY);
+            c.moveTo(0, i*50);
+            c.lineTo(endX, i*50);
+            c.stroke();
+        }
+        // endX, endY 大きい方÷10だけ線を引く
+        for (i = 0; i < (Math.max(endX,endY)); i ++) {
+            // 10で割り切れるときに実行, 500pxごと
+            if (i % 10 == 0){
+                c.strokeStyle = '#90ee90';
+                strokeGrid();
+            } // 奇数の時に. 50pxごと
+            else if (i % 2 == 1){
+                c.strokeStyle = '#999';
+                strokeGrid();
+            } // 偶数の時に. 100pxごと
+            else if (i % 2 == 0) {
+                c.strokeStyle = '#fff';
+                strokeGrid();
+            }
+        }
+    } 
+    //gridLine();
+
+
+    function KeyDownHandler(e) {
+        if(e.keyCode == 39||e.keyCode == 68) { 
+            right = true;
+        } else if(e.keyCode == 37||e.keyCode == 65) {
+            left = true;
+        }
+    }
+    function KeyUpHandler(e) {
+        if (e.keyCode == 39||e.keyCode == 68) {
+            right = false;
+        } else if (e.keyCode == 37||e.keyCode == 65) {
+            left = false;
+        }
+    }  
+    function drawSlime() {
+        if (flag)
+            c.drawImage(img, slimeX,slimeY, slimeW,slimeH);
+        if (right&& slimeX+slimeW < endX)
+            slimeX += slimeSpd;
+        else if (left && slimeSpd<slimeX)
+            slimeX -= slimeSpd;
+    }
+    function msg() {
+        c.beginPath();
+        c.fillStyle = '#fff';
+        c.textAlign = "right";
+        c.textBaseline = 'bottom';
+        c.font = endX * .03 +'px serif';
+        c.fillText('素材提供: Rド様',endX,endY);
+    }
+    function draw() {
+        c.clearRect(0,0,endX,endY);
+        drawSlime();
+        msg();
+        console.log(slimeX);
+        //gridLine();
+        requestAnimationFrame(draw);
+    } draw();
+
+</script>
+</body>
+</html>
