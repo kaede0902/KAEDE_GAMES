@@ -60,7 +60,8 @@ var Top = midY - AreaSize/2 * size; var Bottom = midY + AreaSize/2 * size;
 var tankX = midX; var tankY = midY -size + (AreaSize/2) * size;
 var a = 0;
 
-var bulletY = tankY-size/2
+var bulletX;
+var bulletY = tankY-size/2;
 var bulleCount = 0;
 
 // --------------render---------------------------------------- 
@@ -97,10 +98,16 @@ function drawTank() {
 //     }
 //     bulleCount++;
 // }
+var magazine = {
+    bullet.x = 1;
+    bullet.y = 2;
+    bullet.spd = 3;
+}
+
 function shoot(x,y,spd) {
-    c.drawImage(bullet,x,y);
-    if (y < Top-10)
-        y -= spd;
+    c.drawImage(bullet,bulletX,bulletY);
+    if (bullet.y < Top-10)
+        bullet.y -= spd;
     shotCount++;
     
 } 
@@ -111,7 +118,7 @@ function shoot(x,y,spd) {
 function MakeArea() {
     drawFloor();
     stageLine();
-    drawGuide()    
+    drawGuide();
 }
 
 function stageLine() {
@@ -158,8 +165,10 @@ function KeyDownHandler(e) {
         right = true;
     else if(e.keyCode == 37||e.keyCode == 65) 
         left = true;
-    if (e.keyCode == 13)
-        shoot(tankX+size/4,tankY-size/2,10);
+    if (e.keyCode == 13){
+        bulletX = tankX+16; // assgin bulX
+        shoot(bulletX,bulletY,10);
+    }
 }
 function KeyUpHandler(e) { // e をlogで出せば入力がわかる？
     if (e.keyCode == 39||e.keyCode == 68) 

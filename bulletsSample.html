@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tank rolling</title>
+    <style>
+        * {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+<script> // Change: size,AreaSize,floor,
+
+//　いつものCanvasセット
+const cvs = document.querySelector('canvas');
+const c = cvs.getContext('2d');
+const endX = cvs.width = window.innerWidth;
+const endY = cvs.height= window.innerHeight;
+const midX = cvs.width /2;
+const midY = cvs.height /2;
+c.fillStyle = c.strokeStyle = '#fff';
+
+document.addEventListener("keydown", KeyDownHandler, false);
+document.addEventListener("keyup", KeyUpHandler, false);
+
+var right = false; var left = false; var shot = false;
+
+
+
+// sizeは64pxで描画する。
+const floor = new Image();
+floor.src = './tankParts/floor.png';
+
+const bullet = new Image();
+bullet.src = './tankParts/bullet.png';
+
+
+var flag = false;
+bullet.onload = function() {
+    flag = true;
+};       
+
+var AreaSize = 8; const size = 64;// Area 6 * 6 tiles. 64px. -3*64 = -192 
+var LeftX = midX -AreaSize/2 * size; var RightX = midX + AreaSize/2 * size;
+var Top = midY - AreaSize/2 * size; var Bottom = midY + AreaSize/2 * size;
+
+var a = 0;
+var tankY = midY -size + (AreaSize/2) * size;
+var bulletX;
+var bulletY = tankY-size/2;
+var bulleCount = 0;
+
+// --------------render---------------------------------------- 
+function render() {
+    c.clearRect(0,0,endX,endY);
+    if (flag) 
+        MakeArea();
+
+} //--------------render-----------
+
+function shoot(x,y,spd) {
+    c.drawImage(bullet,bulletX,bulletY);
+    if (bullet.y < Top-10)
+        bullet.y -= spd;
+    shotCount++;
+    
+} 
+
+// Key Event ---------------------------------------------
+function KeyDownHandler(e) {
+    // e.preventDefault();
+    if(e.keyCode == 39||e.keyCode == 68) 
+        right = true;
+    else if(e.keyCode == 37||e.keyCode == 65) 
+        left = true;
+    if (e.keyCode == 13){
+        bulletX = midX+16; // assgin bulX
+        shoot(bulletX,bulletY,10);
+    }
+}
+function KeyUpHandler(e) { // e をlogで出せば入力がわかる？
+    if (e.keyCode == 39||e.keyCode == 68) 
+        right = false;
+    else if (e.keyCode == 37||e.keyCode == 65)
+        left = false;
+    // if (e.keyCode == 13)
+    //     shot = false;
+}
+// key event ----------------------------------------------
+
+// -------------------- Make Area ------------------------------
+function MakeArea() {
+    drawFloor();
+    stageLine();
+    drawGuide()    
+}
+
+function stageLine() {
+    c.beginPath();
+    for (i = -AreaSize/2; i <= AreaSize/2; i++) { // -3,-2,-1,0,1,2,3
+        c.moveTo(midX+i*size,Top);
+        c.lineTo(midX+i*size,Bottom);
+        c.moveTo(LeftX,midY-i*size);
+        c.lineTo(RightX,midY-i*size);
+    }
+    c.stroke();
+    c.closePath();
+}
+
+function drawFloor() {
+    for (row = 0; row < AreaSize; row++) {
+        for (column = 0; column < AreaSize; column++)
+        c.drawImage(floor,LeftX+row*size,
+                        Top+column*size ,size,size);
+    }
+}
+
+function drawGuide() {
+    c.beginPath();
+    c.fillStyle = '#aaa';
+    c.font= size/2 +'px serif';
+    c.textAlign = "center";
+    c.fillText('Size: '+size
+        +'px: '+ AreaSize+ ' x '+ AreaSize,
+        midX,Bottom+size);
+    
+    c.fillStyle = '#fff';
+    c.fillText('Enter to shoot',midX,Bottom+size/2);
+    c.fillText('<- A key',LeftX,Top-10);
+    c.fillText('D key ->',RightX,Top-10);
+    c.closePath();
+}
+// Make Area----------------------------------------------
+
+setInterval(render,100);
+
+    </script>
+</body>
+</html>
