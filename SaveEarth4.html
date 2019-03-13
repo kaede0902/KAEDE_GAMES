@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Save Earth 4</title>
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+</head>
+<body>
+    <div id="game_area">
+        <canvas id="game_screen" width="2000" height="1000" onclick="fire()">
+        </canvas></div>
+
+    <script>
+
+        var screen_cv = document.getElementById('game_screen');
+        var screen_context = screen_cv.getContext('2d');
+
+        var target_pop_wait = 30; // Disk interval
+
+        var targetList = new Array(); // Disk array
+        var bul = null; // Make a bullet
+
+        var bul_num = 0;
+        var target_num = 0;
+
+
+        process();
+
+        function process() {
+            var i;
+            target_pop_wait -= (Math.random() +1 );
+            if (target_pop_wait < 0) {
+                var obj = new Object(); // Make a disk
+                obj.x = Math.random() * 1740; // side pop point
+                obj.y = 0;
+                obj.r = 26;
+                // init speed
+                obj.dx = 0;
+                obj.dy = 0;
+                                  
+                targetList.push(obj); // Add to array
+                target_pop_wait = 30; // initialize
+            }
+            for (i = 0; i < targetList.length; i++ ) {
+                // Set disk speed
+                targetList[i].dx = -1 + Math.random() * 2;
+                targetList[i].dy =  1 + Math.random() * 11;
+                
+                // Update disk place by their speed
+                targetList[i].x += targetList[i].dx;
+                targetList[i].y += targetList[i].dy;
+                
+                // Del disk if y = 300
+                if (targetList[i].y > 990) {
+                    targetList[i] = null;
+                } // Del disk if bul touch bul.
+                if (bul != null && targetList[i] != null && collision(targetList[i], bul)) {
+                    targetList[i] = null;
+                    target_num++;
+                }
+                
+            }
+            var tmpList = new Array();
+            for (i = 0; i < targetList.length; i++) {
+                if (targetList[i] != null) {
+                    tmpList.push(targetList[i]);
+                }
+            }
+            targetList = tmpList;
+            // Move bul by 24, and del.
+            if (bul != null) {
+                bul.x -= 96;
+                if (bul.x < 1) {
+                    bul = null;
+                }
+            }
+
+
+            draw(screen_context);
+            setTimeout("process()", 30); // Redo process() in 30ms
+
+        }
+        // Firing start point
+        function fire() {
+            if (bul == null) {
+                bul = new Object();
+                bul_num++;
+                bul.x = 1740;
+                bul.y = 740;
+                bul.r = 34;
+            }
+        }
+        function collision(a, b) {
+            var dis = (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
+            var rr = (a.r + b.r) * (a.r + b.r);
+            return (dis < rr);
+        }
+        
+        function draw(context) {
+        // ! TODO:  x, y, width, height.
+            // Sky
+            context.fillStyle = 'black';
+            context.fillRect(0, 0, 2000, 1000);
+            
+            // Earth // green
+            context.fillStyle = 'green'
+            context.fillRect(0, 950, 2000,50);
+            // Hill
+            context.fillStyle = '#875824';
+            context.fillRect(1750, 800, 100, 200);
+            // Barrel
+            context.fillStyle = '#808080';
+            context.fillRect(1740, 730, 60, 20);
+            // Battery
+            context.fillStyle = '#2c3e50';
+            context.fillRect(1760, 750, 70, 50);
+            // Fire
+            for (i = 0; i < targetList.length; i++) {
+                var g = context.createRadialGradient
+                (targetList[i].x, targetList[i].y, targetList[i].r /3, 
+                targetList[i].x, targetList[i].y, targetList[i].r);
+
+                g.addColorStop(0, '#8b0000');
+                g.addColorStop(1, 'red');
+                context.fillStyle = g;
+                // Draw Circle
+                context.beginPath();
+                context.arc(targetList[i].x, targetList[i].y, 26, 0, Math.PI * 2);
+                context.closePath();
+                context.fill();
+            }
+            // Bullet
+            if (bul != null) {
+                context.fillStyle = 'silver';
+                // Draw Circle at bullet
+                context.beginPath();
+                context.arc(bul.x, bul.y, 34, 0, Math.PI * 2);
+                context.closePath();
+                context.fill();
+            }
+            // // count
+            context.fillStyle = 'silver';
+            context.fillRect(1700, 220, 200, 140);
+            // context.fillStyle = '#000000';
+            // context.font = "40px _sans";
+            // context.textBaseLine = "top";
+            // context.fillText("Bul used" + bul_num);
+            
+            context.fillStyle = 'black';
+            context.font = "35px serif";
+            context.textBaseline = "hanging";
+            context.fillText("発射数："+ bul_num, 1720, 250);
+            context.font = "35px serif";
+            context.textBaseline = "hanging";
+            context.fillText("撃破数："+ target_num, 1720, 300);
+        }
+       
+    </script>
+</body>
+</html>
