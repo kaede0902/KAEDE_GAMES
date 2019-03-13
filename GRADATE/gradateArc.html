@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>strokeCircle</title>
+    <style>
+        canvas { background: #333;
+                width: 100%; height: 100%;}
+        body {margin: 0;}
+    </style>
+
+</head>
+<body>
+    <canvas></canvas>
+<script>
+    var canvas = document.querySelector('canvas');
+    var endX = canvas.width = window.innerWidth;
+    var endY = canvas.height = window.innerHeight;
+    var c = canvas.getContext('2d');
+    var midX = endX/2;
+    var midY = endY/2;
+
+    function gridLine() {
+        c.lineWidth = 1;
+        function strokeGrid() {
+            c.beginPath();
+            c.moveTo(i*50, 0);
+            c.lineTo(i*50, 1000);
+            c.moveTo(0, i*50);
+            c.lineTo(2000, i*50);
+            c.stroke();
+        }
+
+        for (i = 0; i < 500; i ++) {
+            if (i % 10 == 0){
+                c.strokeStyle = '#90ee90';
+                strokeGrid();
+            }
+            else if (i % 2 == 1){
+                c.strokeStyle = '#999';
+                strokeGrid();
+            }
+            else if (i % 2 == 0) {
+                c.strokeStyle = '#fff';
+                strokeGrid();
+            }
+        }
+    }
+
+
+    function drawCircle(x, y, r, color) {
+        c.beginPath();
+        c.arc(x, y, r, 0, 2*Math.PI, false);
+        c.StrokeStyle = color;
+        c.stroke();
+    }
+    c.beginPath();
+    var gr = c.createRadialGradient(midX,midY,midY*.1, midX,midY,endY);
+    gr.addColorStop(0.0,'#f00');
+    gr.addColorStop(0.5,'#0f0');
+    gr.addColorStop(1.0,'#f00');
+    
+    
+    c.strokeStyle = gr;
+    c.fillStyle = gr;
+    
+    //c.fillRect(0,0,endX,endY);
+    c.arc(midX/5,midY,midY/4,0,7,false);
+    c.stroke();
+    //c.fill();
+
+    //gridLine();
+</script>
+</body>
+</html>

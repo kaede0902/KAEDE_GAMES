@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pretty Nine</title>
+    <style>* { padding: 0; margin: 0; }
+        canvas { background: rgb(149, 220, 241); }
+    </style>
+
+</head>
+<body>
+    <canvas id="myCanvas" width="2000" height="1000"></canvas>
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 20;
+    // x, y, r, StartAngle, EndAngle(Math.PI/180), 
+    //  start anti clockwise? --> false = clockwise
+    ctx.arc(100, 100, 50, 0, (Math.PI/180)*320, false);
+    ctx.stroke();
+    // I don't know why but this makes pretty 9.
+    ctx.moveTo(100,200);
+    ctx.arc(100, 100, 50, 0, (Math.PI/180)*270, false);
+    ctx.stroke();
+    // Google logo
+    ctx.moveTo(300,150);
+    ctx.arc(300, 150, 50, 0, (Math.PI/180)*300, false);
+    ctx.stroke();
+    </script>
+</body>
+</html>

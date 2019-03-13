@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eye Culc</title>
+    <style>* { padding: 0; margin: 0; }
+        canvas { background: rgb(149, 220, 241); }
+    </style>
+
+</head>
+<body>
+    <canvas id="myCanvas" width="2000" height="1000"></canvas>
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var o;
+    var x = 100;
+    var y = 100;
+    function draw() {
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 20;
+        o = 24;
+        // x, y, r, StartAngle, EndAngle(Math.PI/180), 
+        //  start anti clockwise? --> false = clockwise
+        ctx.arc(x, y, 50, (Math.PI/180)* o, (Math.PI/180)*(360-o), false);
+        // o1を50にするともっと下から始まる
+        ctx.stroke();
+    }
+
+    draw();
+    x += 200;
+    o += 50; // End angel = 310
+    // 同じのができてしまう！！！
+    
+
+
+    </script>
+</body>
+</html>

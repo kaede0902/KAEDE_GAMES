@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GrnLight04</title>
+    <style>
+        canvas {
+            background: rgb(94, 94, 94);
+            width: 100%; height: 100%;
+        }
+        body {margin: 0;}
+    </style>
+
+</head>
+<body>
+    <canvas></canvas>
+<script>
+    var canvas = document.querySelector('canvas');
+    var w = canvas.width = window.innerWidth;
+    var h = canvas.height = window.innerHeight;
+    var c = canvas.getContext('2d');
+
+
+    var gr = c.
+    createRadialGradient(w,h,100,w,h,w*3);
+    gr.addColorStop(0,'#ffe');
+    gr.addColorStop(.5,'#88bb66');
+    gr.addColorStop(1,'#000');
+    
+    c.fillStyle = gr;
+    c.fillRect(0,0,w,h);
+    
+    
+</script>
+</body>
+</html>

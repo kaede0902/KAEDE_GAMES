@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EX2.3 ver4</title>
+    <style>* { padding: 0; margin: 0; }
+        canvas { background: rgb(149, 220, 241); }
+    </style>
+
+</head>
+<body>
+    <canvas id="myCanvas" width="2000" height="1000"></canvas>
+<script>
+    // 2000 * 1000 Area!
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    // Cap: round, Join bevel, From leftUpper.
+    ctx.strokeStyle = "#7f7f7f";
+    ctx.lineWidth = 100;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    // 1. x + 200
+    var x = 100;
+    var y = 100;
+    var a = 50;
+    var m = 200;
+
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x += m ,y);
+    ctx.stroke();
+    // 2. x += 50, y += 50, y + 200;
+    ctx.beginPath();
+    ctx.moveTo(x+= a, y +=a);
+    ctx.lineTo(x, y += m);
+    ctx.stroke();
+    // 3. x -= 50, y += 50, x -200;
+    ctx.beginPath();
+    ctx.moveTo(x -= a ,y += a);
+    ctx.lineTo(x -=m ,y);
+    ctx.stroke();
+    // 4. x -= 50, y += 50, y +200;
+    ctx.beginPath();
+    ctx.moveTo(x -= a, y += a);
+    ctx.lineTo(x, y += m);
+    ctx.stroke();
+    // 5. x += 50, y += 50, x +200;
+    ctx.beginPath();
+    ctx.moveTo(x += a, y +=a);
+    ctx.lineTo(x +=m, y);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.lineTo(0,0);
+    ctx.stroke();
+
+
+</script>
+</body>
+</html>
