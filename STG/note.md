@@ -3,8 +3,8 @@
 
 ## TASK
 
-1. Separate setup JS
-
+1. (draw, move, hit)func separate
+2. hit func library?
 
 
 ## emmet.vim

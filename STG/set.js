@@ -9,7 +9,7 @@ c.lineWidth = 5;
 const keyPress = {
     right: false,
     left: false,
-},
+};
 
 
 let gameEnd = false;

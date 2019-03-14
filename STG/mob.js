@@ -15,7 +15,7 @@ const enemy = {
         spd: 10,
         hp: 200,
         clr: '#D00',
-        drc = 1;
+        drc: 1,
 };
 const bullet = {
     player: {
