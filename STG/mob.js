@@ -1,11 +1,3 @@
-const canvas = document.querySelector('canvas');
-const endX = canvas.width = window.innerWidth;
-const endY = canvas.height = window.innerHeight;
-const c = canvas.getContext('2d');
-const midX = endX/2;
-const midY = endY/2;
-c.lineWidth = 5;
-
 const player = {
         x: endX,
         y: endY-60,
@@ -17,12 +9,13 @@ const player = {
 };
 const enemy = {
         x: endX/2.5,
-        y: endY/4,
+        y: endY/3.0,
         w: 60,
         h: 120,
         spd: 10,
         hp: 200,
         clr: '#D00',
+        drc = 1;
 };
 const bullet = {
     player: {
