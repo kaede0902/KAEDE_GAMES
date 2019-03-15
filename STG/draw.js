@@ -1,9 +1,7 @@
-
 src = 'set.js';
 src = 'mob.js';
 
 console.log(
-   c
 );
 
 function drawArc(obj) {
@@ -11,7 +9,6 @@ function drawArc(obj) {
     c.arc(obj.x, obj.y, obj.r,0,9,false);
     c.fill();
 }
-
 function drawTri(obj) {
     let a = {
         x: obj.x,
@@ -21,14 +18,14 @@ function drawTri(obj) {
         x: obj.x + obj.w /2,
         y: obj.y - obj.h /2,
     };
-    let c = {
+    let C = {
         x: obj.x - obj.w /2,
         y: obj.y + obj.h /2,
     };
     c.beginPath();
     c.moveTo(a.x, a.y);
     c.lineTo(b.x, b.y);
-    c.lineTo(c.x, c.y);
+    c.lineTo(C.x, C.y);
     c.lineTo(a.x, a.y);
     c.fill();
     c.closePath();
