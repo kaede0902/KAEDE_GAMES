@@ -1,5 +1,7 @@
+src = 'set.js';
+src = 'draw.js';
 const player = {
-        x: endX,
+        x: midX,
         y: endY-60,
         w: 40,
         h: 120,
@@ -21,6 +23,7 @@ const bullet = {
     player: {
         x: player.x,
         y: player.y,
+        r: 10,
         spd: 48,
         clr: '#BBB',
     },
@@ -28,17 +31,25 @@ const bullet = {
         c: {
             x: enemy.x,
             y: enemy.y,
+            r: endY * 0.04,
+            clr: '#F00',
+            spd: 12,
         }, 
         l: {
             x: enemy.x -2,
             y: enemy.y,
+            r: endY * 0.04,
+            clr: '#F00',
+            spd: 12,
+
         }, 
         r: {
             x: enemy.x +2,
             y: enemy.y,
+            r: endY * 0.04,
+            clr: '#F00',
+            spd: 12,
         }, 
-        spd: 12,
-        clr: '#F00',
     },
 };
 const msg = {
