@@ -1,5 +1,4 @@
 src = 'set.js';
-src = 'draw.js';
 const player = {
         x: midX,
         y: endY-60,

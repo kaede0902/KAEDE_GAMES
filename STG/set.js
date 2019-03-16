@@ -1,5 +1,3 @@
-src = 'mob.js';
-src = 'draw.js';
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 const endX = canvas.width = window.innerWidth;

@@ -27,11 +27,13 @@ function drawTri(obj) {
     };
     c.beginPath();
     c.moveTo(a.x, a.y);
-    c.lineTo(b.x, b.y);
-    c.lineTo(C.x, C.y);
-    c.lineTo(a.x, a.y);
+//    c.lineTo(b.x, b.y);
+//    c.lineTo(C.x, C.y);
+//    c.lineTo(a.x, a.y);
+
+    console.log(a,b,C);
     c.closePath();
     c.fill();
 }
-drawArc(bullet.player);
 drawTri(player);
+console.log(player.x, player.y)
