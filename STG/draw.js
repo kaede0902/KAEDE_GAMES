@@ -2,12 +2,15 @@ src = 'set.js';
 src = 'mob.js';
 
 console.log(
+    
 );
 
 function drawArc(obj) {
+    c.beginPath();
     c.fillStyle = obj.clr;
     c.arc(obj.x, obj.y, obj.r,0,9,false);
     c.fill();
+    c.closePath();
 }
 function drawTri(obj) {
     let a = {
@@ -27,8 +30,8 @@ function drawTri(obj) {
     c.lineTo(b.x, b.y);
     c.lineTo(C.x, C.y);
     c.lineTo(a.x, a.y);
-    c.fill();
     c.closePath();
+    c.fill();
 }
 drawArc(bullet.player);
 drawTri(player);
