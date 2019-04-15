@@ -1,9 +1,3 @@
-src = 'set.js';
-src = 'mob.js';
-
-console.log(
-    
-);
 
 function drawArc(obj) {
     c.beginPath();

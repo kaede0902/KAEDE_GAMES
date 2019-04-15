@@ -1,14 +1,13 @@
-src = 'set.js';
-const player = {
-        x: midX,
-        y: endY-60,
-        w: 40,
-        h: 120,
-        spd: 12,
-        hp: 50,
-        clr: '#0095DD',
-};
-const enemy = {
+//const player = {
+//        x: midX,
+//        y: endY-60,
+//        w: 40,
+//        h: 120,
+//        spd: 12,
+//        hp: 50,
+//        clr: '#0095DD',
+//};
+const enemy_prefab = {
         x: endX/2.5,
         y: endY/3.0,
         w: 60,
@@ -17,39 +16,6 @@ const enemy = {
         hp: 200,
         clr: '#D00',
         drc: 1,
-};
-const bullet = {
-    player: {
-        x: player.x,
-        y: player.y,
-        r: 10,
-        spd: 48,
-        clr: '#BBB',
-    },
-    enemy: {
-        c: {
-            x: enemy.x,
-            y: enemy.y,
-            r: endY * 0.04,
-            clr: '#F00',
-            spd: 12,
-        }, 
-        l: {
-            x: enemy.x -2,
-            y: enemy.y,
-            r: endY * 0.04,
-            clr: '#F00',
-            spd: 12,
-
-        }, 
-        r: {
-            x: enemy.x +2,
-            y: enemy.y,
-            r: endY * 0.04,
-            clr: '#F00',
-            spd: 12,
-        }, 
-    },
 };
 const msg = {
     usage: {
@@ -81,5 +47,55 @@ const msg = {
         clr: '#F22',
     },
 };
+let p2 = new Mob(1,2,3.4);
+console.log(p2);
 
-console.log(player,enemy,bullet, msg);
+//(x,y,w,h,  clr,spd,hp,dir) 
+//(x,y,r,clr,spd)
+const player = new Mob(
+  midX, endY-60, 40, 120, 
+  '07D',12,50,1);
+/*
+const enemy = new Mob(
+  endX/2.5, endY/3.0, 60,120,
+  'D00', 10, 200, 1);
+*/
+const enemy = new Mob(enemy_prefab);
+console.log(enemy);
+const player_bullet = () => {
+    return {
+        x: player.x,
+        y: player.y,
+        r: 10,
+        spd: 48,
+        clr: '#BBB',
+    };
+g;
+const bullet = {
+    player: player_bullet,
+    enemy: {
+        c: {
+            x: enemy.x,
+            y: enemy.y,
+            r: endY * 0.04,
+            clr: '#F00',
+            spd: 12,
+        }, 
+        l: {
+            x: enemy.x -2,
+            y: enemy.y,
+            r: endY * 0.04,
+            clr: '#F00',
+            spd: 12,
+
+        }, 
+        r: {
+            x: enemy.x +2,
+            y: enemy.y,
+            r: endY * 0.04,
+            clr: '#F00',
+            spd: 12,
+        }, 
+    },
+};
+
