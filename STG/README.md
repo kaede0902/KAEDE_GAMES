@@ -13,19 +13,17 @@ set (canvas,ctx),
 
 ### func.js
     has a class Mob() that construct 
-    x,y,w,h,...,clr,spd,hp,dir,
-
+    constructor(
+        x,y,w,h,
+        clr,spd,hp,
+    )
+    radius is half of width.
 
 ### mob.js
     set each (x,y,w,h,spd,hp,clr)
 
-
-
-
-
-
 ## constructer
-Just make a copy object???
+Just make a copy object.
 ```
 class Mob {
 constructor(origin) {

@@ -1,38 +1,39 @@
-class Ball {
-  constructor(x,y,r,clr,spd) {
+class MOB {
+  constructor(x,y,w,h, clr,spd,hp,drc) {
     this.x = x;
     this.y = y;
-    this.r = r;
+    this.w = w;
+    this.h = h;
   
     this.clr = clr;
     this.spd = spd;
-  }
-}  
-let testBall = new Ball(4,4,4,4,4);
-console.log(testBall);
+    this.hp = hp;
+    this.drc = drc;
 
-function drawArc(
-    x = midX,y = midY,r = midX/2,clr = 'DDD'
-){
-//    x= x|| midX; y= y|| midY; r= r|| midX/2; clr= clr|| 'fff';
+    this.r = w/2;
+  }
+}
+//let testMOB = new MOB(4,4,4,4,0,2,0);
+const defaultPoint = {x:midX,y:midY,r:midX/2,clr:'ddd'}
+
+const arc = (obj) => {
+    console.log('point given:',obj);
+    ctx.fillStyle = ctx.strokeStyle = obj.clr;
     ctx.beginPath();
-    ctx.fillStyle = '#'+ clr;
-    ctx.arc(x,y,r,0,2*Math.PI,false);
+    ctx.arc(obj.x, obj.y, obj.r, 0,2*Math.PI,false);
+}
+
+const dot = (point = defaultPoint) => {
+    arc(point);
+    console.log(ctx.fillStyle);
     ctx.fill();
 }
-const dflt = {x:midX,y:midY,r:midX/2,clr:'ddd'}
-const dot = (p = dflt) => {
-    ctx.beginPath();
-    ctx.fillStyle = '#'+ p.clr;
-    ctx.arc(p.x, p.y, p.r,0,2*Math.PI,false);
-    ctx.fill();
-}
-const circle = (p = dflt) => {
-    ctx.beginPath();
-    ctx.strokeStyle = '#'+ p.clr;
-    ctx.arc(p.x, p.y, p.r,0,2*Math.PI,false);
+//dot(); //work
+const ring = (point = defaultPoint) => {
+    arc(point);
     ctx.stroke();
 }
+//ring(); //work
 
 function drawLine(x,y,x2,y2,clr) {
     ctx.beginPath();

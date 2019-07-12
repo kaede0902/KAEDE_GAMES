@@ -1,22 +1,16 @@
-//const player = {
-//        x: midX,
-//        y: endY-60,
-//        w: 40,
-//        h: 120,
-//        spd: 12,
-//        hp: 50,
-//        clr: '#0095DD',
-//};
-const enemy_prefab = {
-        x: endX/2.5,
-        y: endY/3.0,
-        w: 60,
-        h: 120,
-        spd: 10,
-        hp: 200,
-        clr: '#D00',
-        drc: 1,
-};
+const player = new MOB(
+    midX,endY-60,40,120,
+    '#07D',12,50,
+);
+console.log('Player:',player);
+const enemy = new MOB(
+    endX/2.5,endY/3.0,60,120,
+    '#D00',10,200,1,
+);
+console.log('enemy',enemy);
+ring(player);
+ring(enemy);
+
 const msg = {
     usage: {
         x: midX,
@@ -47,22 +41,15 @@ const msg = {
         clr: '#F22',
     },
 };
-let p2 = new Mob(1,2,3.4);
-console.log(p2);
 
 //(x,y,w,h,  clr,spd,hp,dir) 
 //(x,y,r,clr,spd)
-const player = new Mob(
-  midX, endY-60, 40, 120, 
-  '07D',12,50,1);
-console.log(player);
+
 /*
 const enemy = new Mob(
   endX/2.5, endY/3.0, 60,120,
   'D00', 10, 200, 1);
 */
-const enemy = new Mob(enemy_prefab);
-console.log(enemy);
 const player_bullet = () => {
     return {
         x: player.x,
