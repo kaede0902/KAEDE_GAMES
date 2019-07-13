@@ -1,15 +1,22 @@
 const player = new MOB(
     midX,endY-60,40,120,
-    '#07D',12,50,
+    '#07D',12,50,1,
 );
 console.log('Player:',player);
 const enemy = new MOB(
     endX/2.5,endY/3.0,60,120,
     '#D00',10,200,1,
 );
+const convention = {
+    right: player.x<endX,
+    left:  0<player.x,
+}
 console.log('enemy',enemy);
 ring(player);
 ring(enemy);
+keyJudge(keyPress.right,player,convention.right);
+keyJudge(keyPress.left ,player,convention.left);
+console.log(keyPress.right)
 
 const msg = {
     usage: {

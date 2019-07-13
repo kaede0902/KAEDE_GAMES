@@ -7,20 +7,45 @@ Press `a` or `left allow ` to move left.
 
 ## files
 ### set.js
-set (canvas,ctx),
-    define (right/left)keypress, gameEnd,
-    name (mid|end,x|y),
+#### Name
+Define `canvas` get canvas by id.  
+Name canvas.context as `ctx`.  
+Name window.innerWidth as `endX`,  
+innerHight as `endY`,
+endX/2 as `midX`, endY/2 as `midY`.  
+#### Define
+`KeyPress.right/left`,`gameEnd`  
+By `addEventListener`  
+Use "keydown/up" to trigger `key(Up/Down)Handler`.  
+And set:  
+when 39 & 68 is Pressed, `KeyPress.right` is true,   
+when 37 & 63 is Pressed, `KeyPress.left` is true,   
+when 39 & 68 is released, `KeyPress.right` is false,  
+when 37 & 63 is released, `KeyPress.left` is false,  
 
 ### func.js
-    has a class Mob() that construct 
-    constructor(
-        x,y,w,h,
-        clr,spd,hp,
-    )
-    radius is half of width.
+#### MOB()
+Assign each values to the variable.  
+Constructor define
+    x,y,w,h,
+    clr,spd,hp,drc, and r(w/2).  
+#### arc()
+base of dot() and ring().  
+begins the path and run the drawing line.  
+##### dot/ring(point)
+fill or stroke arc from the point.  
+the point also has color.  
+
+#### Move(obj,x,y)
+increase the obj.x and obj.y  
+
 
 ### mob.js
-    set each (x,y,w,h,spd,hp,clr)
+set each (x,y,w,h,spd,hp,clr), using Mob class.  
+Settle player and enemy.  
+Define convention of right/left press.  
+(right: player.x < endX),
+(left : 0 < player.x).  
 
 ## constructer
 Just make a copy object.

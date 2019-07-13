@@ -1,5 +1,5 @@
 class MOB {
-  constructor(x,y,w,h, clr,spd,hp,drc) {
+  constructor(x,y,w,h, clr,spd,hp,drc,) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -11,7 +11,7 @@ class MOB {
     this.drc = drc;
 
     this.r = w/2;
-  }
+  } // assigning this, one additonal child leads shift all.
 }
 //let testMOB = new MOB(4,4,4,4,0,2,0);
 const defaultPoint = {x:midX,y:midY,r:midX/2,clr:'ddd'}
@@ -34,6 +34,17 @@ const ring = (point = defaultPoint) => {
     ctx.stroke();
 }
 //ring(); //work
+const move = (obj, x,y) => {
+    obj.x += x;
+    obj.y += y;
+}
+const keyJudge = (key,obj,limit,) => {
+    if (key && limit)
+        move(obj,obj.spd, 0);
+    // need speed_x, speed_y?
+    // need area_x, area_y?
+}
+
 
 function drawLine(x,y,x2,y2,clr) {
     ctx.beginPath();
