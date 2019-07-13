@@ -22,13 +22,30 @@ when 39 & 68 is Pressed, `KeyPress.right` is true,
 when 37 & 63 is Pressed, `KeyPress.left` is true,   
 when 39 & 68 is released, `KeyPress.right` is false,  
 when 37 & 63 is released, `KeyPress.left` is false,  
-
+---------------------
 ### func.js
 #### MOB()
-Assign each values to the variable.  
-Constructor define
-    x,y,w,h,
-    clr,spd,hp,drc, and r(w/2).  
+Assign arguments to the variable given.
+```
+class MOB {
+    constructor(x,y,w,h, clr,spd,hp,drc,) {
+        this.x = x; this.y = y;
+        this.w = w; this.h = h;
+
+        this.clr = clr; this.spd = spd;
+        this.hp = hp; this.drc = drc;
+
+        this.r = w/2;
+    } 
+```
+Use like this.  
+```
+const player = new MOB(
+        midX,endY-60,40,120,
+        '#07D',12,50,1,
+    );
+```
+
 #### arc()
 base of dot() and ring().  
 begins the path and run the drawing line.  
@@ -37,12 +54,28 @@ fill or stroke arc from the point.
 the point also has color.  
 
 #### Move(obj,x,y)
-increase the obj.x and obj.y  
+Add x,y to obj.x, obj.y
 
+#### keyJudge(key,obj,limit)
+When `key` is true(pressed), and
+limit is true(not overed), 
+add obj.x & obj.y += obj.spd.  
+```
+keyJudge(KeyPress.right ,player,convention.right);
+```
+Todo: run this in loop.
 
+-----------------
 ### mob.js
-set each (x,y,w,h,spd,hp,clr), using Mob class.  
-Settle player and enemy.  
+#### Settle mob
+Assign values ,
+`x`,`y`,`w`,`h`,
+`clr`,`spd`,`hp`,`drc`,
+using `MOB` class.  
+to the each mobs.
+
+By this class define `player` and ` enemy` .  
+#### Restrict mob
 Define convention of right/left press.  
 (right: player.x < endX),
 (left : 0 < player.x).  
