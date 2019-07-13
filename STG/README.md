@@ -22,6 +22,7 @@ when 39 & 68 is Pressed, `KeyPress.right` is true,
 when 37 & 63 is Pressed, `KeyPress.left` is true,   
 when 39 & 68 is released, `KeyPress.right` is false,  
 when 37 & 63 is released, `KeyPress.left` is false,  
+
 ---------------------
 ### func.js
 #### MOB()
