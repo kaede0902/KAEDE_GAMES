@@ -1,6 +1,10 @@
 body {
     margin: 0;
     padding: 0;
+    background: #222;
+    color: #fff;
+    font-size: 48px;
+    text-align: center;
 }
 canvas{
     background: #000;

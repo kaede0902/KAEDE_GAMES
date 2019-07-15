@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>event test</title>
+    <link rel="stylesheet" href="css/bg.css">
 </head>
 <body>
-    <div class="test">sample</div>
+    <div id="Presstest">sample</div>
+    <p id="rightTest">TF</p>
+    <p id="leftTest">TF</p>
     <script>
+
+let Presstest = document.getElementById('Presstest');
+let rightTest = document.getElementById('rightTest');
+let leftTest = document.getElementById('leftTest');
 const keyPress = {
     right: false,
     left: false,
@@ -33,13 +40,18 @@ function KeyDownHandler(e) {
     ) {
         keyPress.left = true;
     }
-    console.log(keyPress);
-    console.log(e.keyCode);
+    printKey(e);
 }
-'Right:(D,L),Left:(A,H)'
+const printKey = (e) => {
+    Presstest.innerHTML = `Pressed: ${e.keyCode}`;
+    rightTest.innerHTML = `Right: ${keyPress.right}`;
+    leftTest.innerHTML = `Left: ${keyPress.left}`;
+    console.log(`Pressed: ${e.keyCode}`);
+    console.log(keyPress);
+}
+//'Right:(D,L),Left:(A,H)'
 // 39:->, 37:<-,
 // 76:L, 72:H, 68:D, 65:A,
-// D is always false in Vimnium.
     </script>
 </body>
 </html>
