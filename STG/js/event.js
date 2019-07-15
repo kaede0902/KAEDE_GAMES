@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>event test</title>
-    <link rel="stylesheet" href="css/bg.css">
-</head>
-<body>
-    <div id="Presstest">sample</div>
-    <p id="counter">0</p>
-    <script>
 
-let Presstest = document.getElementById('Presstest');
-let counter = document.getElementById('counter');
+
 const keyPress = {
     right: false,
     left: false,
+    counter: 0,
 };
+const printKey = (e) => {
+    console.log(`Pressed: ${e.keyCode}`);
+    console.log(keyPress);
+}
 console.log(keyPress);
+console.log('Right:(D,L),Left:(A,H)');
+
 document.addEventListener('keydown',KeyDownHandler,false);
 document.addEventListener('keydown',KeyUpHandler,false);
-console.log('Right:(D,L),Left:(A,H)');
-//        document.addEventListener(
-//            'keyup',KeyUpHandler,false
-//        );
+
 function KeyDownHandler(e) {
     if(
         e.keyCode == 39|| //->
@@ -30,14 +22,14 @@ function KeyDownHandler(e) {
         e.keyCode == 76   // L
     ) { 
         keyPress.right = true;
-        counter.innerHTML++;
+        keyPress.counter++;
     } else if(
         e.keyCode == 37|| //<-
         e.keyCode == 65|| // A
         e.keyCode == 72// H
     ) {
         keyPress.left = true;
-        counter.innerHTML++;
+        keyPress.counter++;
     }
     printKey(e);
 }
@@ -58,15 +50,4 @@ function KeyUpHandler(e) {
     printKey(e);
 }
 
-const printKey = (e) => {
-    Presstest.innerHTML = `Pressed: ${e.keyCode}`;
-    console.log(`Pressed: ${e.keyCode}`);
-    console.log(keyPress);
-    console.log(counter.innerHTML);
-}
-//'Right:(D,L),Left:(A,H)'
-// 39:->, 37:<-,
-// 76:L, 72:H, 68:D, 65:A,
-    </script>
-</body>
-</html>
+
