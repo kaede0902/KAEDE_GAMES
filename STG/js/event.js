@@ -13,7 +13,7 @@ console.log(keyPress);
 console.log('Right:(D,L),Left:(A,H)');
 
 document.addEventListener('keydown',KeyDownHandler,false);
-document.addEventListener('keydown',KeyUpHandler,false);
+document.addEventListener('keyup',KeyUpHandler,false);
 
 function KeyDownHandler(e) {
     if(

@@ -14,9 +14,6 @@ const convention = {
 console.log('enemy',enemy);
 ring(player);
 ring(enemy);
-keyJudge(keyPress.right,player,convention.right);
-keyJudge(keyPress.left ,player,convention.left);
-console.log(keyPress.right)
 
 const msg = {
     usage: {

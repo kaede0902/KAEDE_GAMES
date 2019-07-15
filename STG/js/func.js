@@ -17,7 +17,6 @@ class MOB {
 const defaultPoint = {x:midX,y:midY,r:midX/2,clr:'ddd'}
 
 const arc = (obj) => {
-    console.log('point given:',obj);
     ctx.fillStyle = ctx.strokeStyle = obj.clr;
     ctx.beginPath();
     ctx.arc(obj.x, obj.y, obj.r, 0,2*Math.PI,false);
@@ -25,7 +24,6 @@ const arc = (obj) => {
 
 const dot = (point = defaultPoint) => {
     arc(point);
-    console.log(ctx.fillStyle);
     ctx.fill();
 }
 //dot(); //work
@@ -38,11 +36,15 @@ const move = (obj, x,y) => {
     obj.x += x;
     obj.y += y;
 }
-const keyJudge = (key,obj,limit,) => {
-    if (key && limit)
-        move(obj,obj.spd, 0);
-    // need speed_x, speed_y?
-    // need area_x, area_y?
+const moveByKeyPress = (key,obj,limit,dir) => {
+    if (key && limit) {
+        if (dir == 'r'){
+            move(obj,obj.spd, 0);
+        } else {
+            move(obj,obj.spd*-1, 0);
+        }
+    }
+    console.log('playerX',obj.x);
 }
 
 

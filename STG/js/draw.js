@@ -22,3 +22,4 @@ function drawTri(obj) {
 }
 //drawTri(player);
 //console.log(player.x, player.y)
+
