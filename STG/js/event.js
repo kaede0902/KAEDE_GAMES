@@ -23,7 +23,7 @@ function KeyDownHandler(e) {
     } else if(judgeKeyNum(e, 37,65,72)) {
         keyPress.left = true;
         // <-,A,H
-    } else if(judgeKeyNum(e, 38,82,75,)) {
+    } else if(judgeKeyNum(e, 38,87,75,)) {
         keyPress.up = true;
         // ^,W,K,
     } else if(judgeKeyNum(e, 40,83,74,)) {
@@ -40,7 +40,7 @@ function KeyUpHandler(e) {
     } else if(judgeKeyNum(e, 37,65,72)) {
         keyPress.left = false;
         // <-,A,H
-    } else if(judgeKeyNum(e, 38,82,75,)) {
+    } else if(judgeKeyNum(e, 38,87,75,)) {
         keyPress.up = false;
         // ^,W,K,
     } else if(judgeKeyNum(e, 40,83,74,)) {

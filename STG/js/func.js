@@ -38,12 +38,14 @@ const move = (obj, x,y) => {
     console.log(obj);
 }
 const moveByKeyPress = (key,obj) => {
-    if (key) {
-        if (key.right && obj.x < endX){
-            move(obj, obj.spd*1, 0);
-        } else if(key.left && 0 < obj.x) {
-            move(obj,obj.spd*-1, 0);
-        }
+    if (key.right && obj.x < endX){
+        move(obj, obj.spd*1, 0);
+    } else if(key.left && 0 < obj.x) {
+        move(obj,obj.spd*-1, 0);
+    } else if(key.up && (0 < obj.y )) {
+        move(obj,0, obj.spd*-1);
+    } else if(key.down && (obj.y < endY)) {
+        move(obj,0, obj.spd*+1);
     }
 }
 
