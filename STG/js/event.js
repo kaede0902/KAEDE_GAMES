@@ -25,7 +25,7 @@ function KeyDownHandler(e) {
         // <-,A,H
     } else if(judgeKeyNum(e, 38,87,75,)) {
         keyPress.up = true;
-        // ^,W,K,
+        // ^,W,K,   W is 87!!!!
     } else if(judgeKeyNum(e, 40,83,74,)) {
         keyPress.down = true;
         // DOWN,S,J
