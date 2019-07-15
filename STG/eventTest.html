@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event test</title>
+</head>
+<body>
+    <div class="test">sample</div>
+    <script>
+const keyPress = {
+    right: false,
+    left: false,
+};
+console.log(keyPress);
+        document.addEventListener(
+            'keydown',KeyDownHandler,false
+        );
+console.log('Right:(D,L),Left:(A,H)');
+//        document.addEventListener(
+//            'keyup',KeyUpHandler,false
+//        );
+function KeyDownHandler(e) {
+    if(
+        e.keyCode == 39|| //->
+        e.keyCode == 68|| // D
+        e.keyCode == 76   // L
+    ) {
+        keyPress.right = true;
+    } else if(
+        e.keyCode == 37|| //<-
+        e.keyCode == 65|| // A
+        e.keyCode == 72   // H
+    ) {
+        keyPress.left = true;
+    }
+    console.log(keyPress);
+    console.log(e.keyCode);
+}
+'Right:(D,L),Left:(A,H)'
+// 39:->, 37:<-,
+// 76:L, 72:H, 68:D, 65:A,
+// D is always false in Vimnium.
+    </script>
+</body>
+</html>
