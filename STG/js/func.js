@@ -35,16 +35,16 @@ const ring = (point = defaultPoint) => {
 const move = (obj, x,y) => {
     obj.x += x;
     obj.y += y;
+    console.log(obj);
 }
-const moveByKeyPress = (key,obj,limit,dir) => {
-    if (key && limit) {
-        if (dir == 'r'){
-            move(obj,obj.spd, 0);
-        } else {
+const moveByKeyPress = (key,obj) => {
+    if (key) {
+        if (key.right && obj.x < endX){
+            move(obj, obj.spd*1, 0);
+        } else if(key.left && 0 < obj.x) {
             move(obj,obj.spd*-1, 0);
         }
     }
-    console.log('playerX',obj.x);
 }
 
 
