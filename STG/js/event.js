@@ -20,42 +20,32 @@ function KeyDownHandler(e) {
     if(judgeKeyNum(e,39,68,76)) {
         keyPress.right = true;
         // ->,D,L
-    } else if(
-        judgeKeyNum(e,37,65,72)
-        // <-,A,H
-    ) {
+    } else if(judgeKeyNum(e, 37,65,72)) {
         keyPress.left = true;
-    } else if(
-        e.keyCode == 38|| // ^
-        e.keyCode == 82|| // w
-        e.keyCode == 75   // k
-    ) {
+        // <-,A,H
+    } else if(judgeKeyNum(e, 38,82,75,)) {
         keyPress.up = true;
-    } else if(
-        e.keyCode == 40|| // !^
-        e.keyCode == 83|| // s
-        e.keyCode == 74   // j
-    ) {
+        // ^,W,K,
+    } else if(judgeKeyNum(e, 40,83,74,)) {
         keyPress.down = true;
+        // DOWN,S,J
     }
-
-
     keyPress.counter++;
     printKey(e);
 }
 function KeyUpHandler(e) {
-    if(
-        e.keyCode == 39|| //->
-        e.keyCode == 68|| // D
-        e.keyCode == 76   // L
-    ) { 
+    if(judgeKeyNum(e,39,68,76)) {
         keyPress.right = false;
-    } else if(
-        e.keyCode == 37|| //<-
-        e.keyCode == 65|| // A
-        e.keyCode == 72// H
-    ) {
+        // ->,D,L
+    } else if(judgeKeyNum(e, 37,65,72)) {
         keyPress.left = false;
+        // <-,A,H
+    } else if(judgeKeyNum(e, 38,82,75,)) {
+        keyPress.up = false;
+        // ^,W,K,
+    } else if(judgeKeyNum(e, 40,83,74,)) {
+        keyPress.down = false;
+        // DOWN,S,J
     }
     printKey(e);
 }
