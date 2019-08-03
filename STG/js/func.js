@@ -26,16 +26,14 @@ const dot = (point = defaultPoint) => {
     arc(point);
     ctx.fill();
 }
-//dot(); //work
 const ring = (point = defaultPoint) => {
     arc(point);
     ctx.stroke();
 }
-//ring(); //work
 const move = (obj, x,y) => {
     obj.x += x;
     obj.y += y;
-    console.log(obj);
+    console.log('moved:',obj);
 }
 const moveByKeyPress = (key,obj) => {
     if (key.right && obj.x < endX){

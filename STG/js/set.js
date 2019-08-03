@@ -6,7 +6,6 @@ const midX = endX/2;
 const midY = endY/2;
 ctx.lineWidth = 5;
 
-
 let gameEnd = false;
-
+let tick = 0;
    

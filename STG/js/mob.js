@@ -11,9 +11,7 @@ const convention = {
     right: player.x<endX,
     left:  0<player.x,
 }
-console.log('enemy',enemy);
-ring(player);
-ring(enemy);
+player.bullets = [];
 
 const msg = {
     usage: {
@@ -45,47 +43,28 @@ const msg = {
         clr: '#F22',
     },
 };
-
-//(x,y,w,h,  clr,spd,hp,dir) 
-//(x,y,r,clr,spd)
-
-/*
-const enemy = new Mob(
-  endX/2.5, endY/3.0, 60,120,
-  'D00', 10, 200, 1);
-*/
-const player_bullet = () => {
-    return {
-        x: player.x,
-        y: player.y,
-        r: 10,
-        spd: 48,
-        clr: '#BBB',
-    };
+const makeBullets = (obj) => {
+    let nowBullet = {
+        name: ('bul'+tick),
+        x: obj.x, y: obj.y, r: 10,
+    }
+    if (obj.bullets.length < 30) {
+        obj.bullets.push(nowBullet);
+        console.log('made:', obj.bullets,);
+    }
 }
-const bullet = {
-    player: player_bullet,
-    enemy: {
-        c: {
-            x: enemy.x,
-            y: enemy.y,
-            r: endY * 0.04,
-            clr: '#F00',
-            spd: 12,
-        }, 
-        l: {
-            x: enemy.x -2,
-            y: enemy.y,
-            r: endY * 0.04,
-            clr: '#F00',
-            spd: 12,
-        }, 
-        r: {
-            x: enemy.x +2,
-            y: enemy.y,
-            r: endY * 0.04,
-            clr: '#F00',
-            spd: 12,
-        }, 
-    },
-};
+const moveBullets = (obj) => {
+    for (prop in obj) {
+        obj[prop].y -= 5;
+        console.log(obj[prop].name,':',obj[prop].y);
+        if (obj[prop].y < 0) {
+            obj.splice(prop,1);
+        }
+        dot(obj[prop]);
+    }
+}
+// p.bul: []
+// .push (bul01)
+// need bul01.x = 0,bul01.y = 1
+// how to use tick to var name
+// let ('bul'+tick) = [];
