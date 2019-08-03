@@ -46,9 +46,9 @@ const msg = {
 const makeBullets = (obj) => {
     let nowBullet = {
         name: ('bul'+tick),
-        x: obj.x, y: obj.y, r: 10,
+        x: obj.x, y: obj.y, r: 10, 
     }
-    if (obj.bullets.length < 30) {
+    if (obj.bullets.length < 36) {
         obj.bullets.push(nowBullet);
         console.log('made:', obj.bullets,);
     }
@@ -56,15 +56,13 @@ const makeBullets = (obj) => {
 const moveBullets = (obj) => {
     for (prop in obj) {
         obj[prop].y -= 5;
-        console.log(obj[prop].name,':',obj[prop].y);
-        if (obj[prop].y < 0) {
+        let bul = obj[prop];
+        console.log(bul.name,':',bul.y,);
+        if (bul.y < 0) {
             obj.splice(prop,1);
         }
         dot(obj[prop]);
     }
 }
-// p.bul: []
-// .push (bul01)
-// need bul01.x = 0,bul01.y = 1
 // how to use tick to var name
 // let ('bul'+tick) = [];
