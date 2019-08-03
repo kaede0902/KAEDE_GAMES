@@ -1,6 +1,15 @@
 # Shooting Game
 [PLAY HERE](https://kaede0902.github.io/KAEDE_GAMES/STG/)  
 [OLDER VER](https://kaede0902.github.io/KAEDE_GAMES/STG/shooting.html)
+## Demands
+Draw, Move, shoot, hit, count,
+### shoot
+make new obj one by one, 
+increment 1 by 1,
+if tick %8 = 0,
+and del till the end 1 by 1,  
+
+
 ## usage
 The Red player shoot bullets automatically.  
 You can move the players plan.  
