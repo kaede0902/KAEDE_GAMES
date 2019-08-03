@@ -3,7 +3,7 @@ const loop = () => {
     ring(player);
     ring(enemy);
     requestAnimationFrame(loop);
-    moveByKeyPress(keyPress.player);
+    moveByKeyPress(keyPress,player);
 }
 loop();
 
