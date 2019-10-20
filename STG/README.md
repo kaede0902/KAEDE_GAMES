@@ -1,8 +1,16 @@
 # Shooting Game
-[PLAY HERE](https://kaede0902.github.io/KAEDE_GAMES/STG/)  
-[OLDER VER](https://kaede0902.github.io/KAEDE_GAMES/STG/shooting.html)
+
+
+[PLAY shooting.html](https://kaede0902.github.io/KAEDE_GAMES/STG/shooting.html)
+
+
+[Developping](https://kaede0902.github.io/KAEDE_GAMES/STG/)  
+
+* moves HJKL too.
+
 ## Demands
 Draw, Move, shoot, hit, count,
+
 ### shoot
 make new obj one by one, 
 increment 1 by 1,
@@ -27,9 +35,11 @@ endX/2 as `midX`, endY/2 as `midY`.
 `KeyPress.right/left`,`gameEnd`  
 
 ## event.js
-#### Define
-variable: `keyPress.right, left, counter`.  
-Trigger: 
+### keyPress
+right, left, up, down, counter,
+### printKey
+print `e.keyCode`.  
+### addEventListener
 `KeyDownHandler`: when 'keydown',  
 `KeyUpHandler`: when 'keyup',  
 By `addEventListener`  
@@ -40,6 +50,7 @@ when 37||65||72 is Pressed, `KeyPress.left` is true,
 when 37||65||72 is released, `KeyPress.left` is false,   
 
 ---------------------
+
 ### func.js
 #### MOB()
 Assign arguments to the variable given.
