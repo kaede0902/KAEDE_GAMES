@@ -14,9 +14,23 @@ class MOB {
 }
 
 const player = new MOB(
-    world.center.x, world.center.x + 30,
+    world.center.x -15, world.center.x + 15,
     world.bottom -60 , world.bottom + -10,
     '#FFF', 15, 500, 1,
 );
-console.log(player);
+const boss = new MOB(
+    world.center.x - 30, world.center.x + 30,
+    world.top + 105, world.top + 5,
+    '#FFF', 15, 500, 1,
+); // left, right, top, bottom,
+const childL = new MOB(
+    world.center.x + 220, world.center.x + 200,
+    world.top + 160, world.top + 110,
+    '#FFF', 15, 500, 1,
+);
+const childR = new MOB(
+    world.center.x - 240, world.center.x - 220,
+    world.top + 160, world.top + 110,
+    '#FFF', 15, 500, 1,
+);
 

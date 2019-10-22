@@ -7,8 +7,17 @@ let line = (fromX, fromY, toX, toY, color) => {
     ctx.closePath();
 }
 
-const drawTriangle = plane => {
+const drawPlane = plane => {
     line(plane.left, plane.bottom, 
         plane.right, plane.bottom, '#FFF');
+    line(plane.right, plane.bottom,
+        plane.center_x, plane.top, '#FFF');
+    line(plane.center_x, plane.top, 
+        plane.left, plane.bottom, '#FFF')
 }
-drawTriangle(player);
+drawPlane(player);
+drawPlane(boss);
+
+drawPlane(childL);
+drawPlane(childR);
+
